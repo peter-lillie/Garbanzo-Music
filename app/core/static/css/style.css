@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+:root {
+    --colorprimary: #121212;
+    --colorsecondary: #FFFFFF;
+    --coloraccent: #1ED760;
+    --ff: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 body {
     max-width: 650px;
     margin: 40px auto;

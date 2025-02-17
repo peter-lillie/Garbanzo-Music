@@ -21,5 +21,6 @@ from django.urls import path
 
 urlpatterns = [
     path("", view=views.index, name="index"), 
+    path("sign_out/", view=views.sign_out, name="sign_out"),
     path("admin/", admin.site.urls),
 ]

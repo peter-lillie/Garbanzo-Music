@@ -14,12 +14,10 @@ import dotenv
 import os
 from pathlib import Path
 
-# from .models import SpotifyUser
-
 dotenv.load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR: Path = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,12 +29,12 @@ SECRET_KEY: str | None = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG: bool = True
 
-ALLOWED_HOSTS = ["*"]  # [ ] TODO: Turn off before production
+ALLOWED_HOSTS: list[str] = ["*"]  # [ ] TODO: Turn off before production
 
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS: list[str] = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,7 +46,7 @@ INSTALLED_APPS = [
     # third-party apps
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE: list[str] = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -58,9 +56,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "core.urls"
+AUTHENTICATION_BACKENDS = [
+    # "core.backends.SpotifyAuthBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
-TEMPLATES = [
+ROOT_URLCONF: str = "core.urls"
+
+TEMPLATES: list[dict[str, any]] = [  # [ ] BUG: need to use typing.Union I suppose
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
@@ -76,13 +79,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "core.wsgi.application"
+WSGI_APPLICATION: str = "core.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES: dict[dict[str, str]] = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("SUPABASE_DB"),
@@ -97,7 +100,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
@@ -112,26 +115,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "core.SpotifyUser"
+AUTH_USER_MODEL: str = "core.SpotifyUser"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE: str = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE: str = "UTC"
 
-USE_I18N = True
+USE_I18N: bool = True
 
-USE_TZ = True
+USE_TZ: bool = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL: str = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+DEFAULT_AUTO_FIELD: str = "django.db.models.BigAutoField"

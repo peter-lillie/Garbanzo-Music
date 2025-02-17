@@ -7,12 +7,18 @@
 <div class="flex">
 
     <div class="w-1/4 p-4 bg-gray-200"> <!-- Sidebar  -->
-  
-      </div>
+      {% if not auth_url %}
+      <h1>Hello {{ user }}</h1>
+      <a href="{% url 'sign_out' %}">Sign out</a>
+      {% endif %}
+      {% for track in tracks %}
+          <li> {{ track }} </li>
+      {% endfor %}  
+    </div>
   
     <div class="w-3/4 p-4"> <!-- Main content area -->
   
-      </div>
+    </div>
   
   </div>
 
